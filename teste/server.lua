@@ -2,44 +2,43 @@ local Tunnel <const> = module("vrp", "lib/Tunnel")
 local Proxy <const> = module("vrp", "lib/Proxy")
 local vRPclient <const> = Tunnel.getInterface('vRP', 'vRP')
 local vRP <const> = Proxy.getInterface('vRP')
-mortiimei = {}
-vrp_pictor = {}
-local damrefresh = {}
-setmetatable(damrefresh, {
+refreshingtbl = {}
+vrp_abilitati = {}
+local refresh = {}
+setmetatable(refresh, {
 	__call = function(...)
-		-- o sa schimb partea asta oleak cand am timp sa functioneze altcumva
 		local loadFile = LoadResourceFile(GetCurrentResourceName(), "./info.json")
-		mortiimei = json.decode(loadFile) 
-return mortiimei;
+		refreshingtbl = json.decode(loadFile) 
+return refreshingtbl;
 	end
 })
-local pictor <const> = {__call = function()
-	karmaandrew = {
+local abilitati <const> = {__call = function()
+	testing = {
 		iq = 10, putere  = 10, 
 		craftinglevel  = 10,
-		metatableuplm= {},
+		themetatable= {},
 		nou=  function()
-		local plm = {}
-		setmetatable(plm, karmaandrew.metatableuplm)
-		return plm 
+		local table_test = {}
+		setmetatable(table_test, testing.themetatable)
+		return table_test 
 		end
 		}
-		karmaandrew.metatableuplm.__index = karmaandrew
-		karmaandrew.metatableuplm.__metatable = "i voul iu"
-		playerbasic = karmaandrew.nou()
-		AddEventHandler('onResourceStart', function() damrefresh() end)
+		testing.themetatable.__index = testing
+		testing.themetatable.__metatable = "ignore"
+		playerbasic = testing.nou()
+		AddEventHandler('onResourceStart', function() refresh() end)
 end}
-setmetatable(vrp_pictor, pictor)
-vrp_pictor()
+setmetatable(vrp_abilitati, abilitati)
+vrp_abilitati()
 AddEventHandler("vRP:playerSpawn", function(uid,source)
 	if uid == nil then return end
-	damrefresh()
-		local fmmcoaie = ({id = uid, iq =playerbasic.iq ,putere =playerbasic.putere , craftinglevel =playerbasic.craftinglevel })
-		for ___,v in pairs(mortiimei) do
+	refresh()
+		local ignore_pls = ({id = uid, iq =playerbasic.iq ,putere =playerbasic.putere , craftinglevel =playerbasic.craftinglevel })
+		for ___,v in pairs(refreshingtbl) do
 			if v.id == uid then
 				return
 			end
 		end
-		table.insert(mortiimei, fmmcoaie)
-		SaveResourceFile(GetCurrentResourceName(), "info.json", json.encode(mortiimei), -1)
+		table.insert(refreshingtbl, ignore_pls)
+		SaveResourceFile(GetCurrentResourceName(), "info.json", json.encode(refreshingtbl), -1)
 end)
